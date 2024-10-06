@@ -16,11 +16,12 @@ return new class extends Migration
             $table->foreignId('user_id')->index()->constrained('users');
             $table->string('title');
             $table->text('description')->nullable();
-            $table->string('priority')->nullable();
+            $table->enum('priority', ['high', 'medium', 'low'])->nullable();
             $table->date('date_deadline')->nullable();
             $table->time('time_deadline')->nullable();
-            $table->boolean('status_completed')->default(false);
+            $table->enum('status', ['pending', 'in_progress', 'completed', 'canceled'])->default('pending');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
