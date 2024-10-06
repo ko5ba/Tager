@@ -14,6 +14,12 @@ return new class extends Migration
         Schema::create('tasks', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->index()->constrained('users');
+            $table->string('title');
+            $table->text('description')->nullable();
+            $table->string('priority')->nullable();
+            $table->date('date_deadline')->nullable();
+            $table->time('time_deadline')->nullable();
+            $table->boolean('status_completed')->default(false);
             $table->timestamps();
         });
     }
