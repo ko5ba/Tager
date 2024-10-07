@@ -13,7 +13,7 @@ class Task extends Model
     use SoftDeletes;
 
     protected $table = 'tasks';
-    protected $fillable = [];
+    protected $guarded = [];
 
     public function User(): BelongsTo
     {

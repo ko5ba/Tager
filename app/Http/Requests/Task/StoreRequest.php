@@ -22,12 +22,13 @@ class StoreRequest extends FormRequest
     public function rules(): array
     {
         return [
+            'user_id' => 'required|integer|exists:users,id',
             'title' => 'required|string|max:255',
             'description' => 'nullable|string|max:500',
-            'priority' => 'nullable|in:high,medium,low',
+            'priority' => 'nullable|string|in:Низкий,Средний,Высокий',
             'date_deadline' => 'nullable|date',
             'time_deadline' => 'nullable|date_format:H:i',
-            'status' => 'nullable|in:pending,in_progress,completed,canceled'
+            'status' => 'nullable|string|in:Ожидание,В процессе,Выполнена,Отменена'
         ];
     }
 
