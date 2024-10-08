@@ -27,7 +27,8 @@ class UpdateRequest extends FormRequest
             'priority' => 'nullable|string|in:Низкий,Средний,Высокий',
             'date_deadline' => 'nullable|date',
             'time_deadline' => 'nullable|date_format:H:i',
-            'status' => 'nullable|string|in:Ожидание,В процессе,Выполнена,Отменена'
+            'status' => 'nullable|string|in:Ожидание,В процессе,Выполнена,Отменена',
+            'category_id' => 'nullable|integer|exists:categories,id',
         ];
     }
 
@@ -39,7 +40,8 @@ class UpdateRequest extends FormRequest
             'priority.in' => 'Приоритет должен быть одним из: высокий, средний, низкий.',
             'date_deadline.date' => 'Дата должна быть в формате ГГГГ-ММ-ДД.',
             'time_deadline.date_format' => 'Время должно быть в формате ЧЧ:ММ.',
-            'status.in' => 'Статус должен быть одним из: ожидание, в процессе, завершен, отменен.'
+            'status.in' => 'Статус должен быть одним из: ожидание, в процессе, завершен, отменен.',
+            'category_id:exists' => 'Такой категории не существует.'
         ];
     }
 }

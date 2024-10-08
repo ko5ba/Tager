@@ -24,6 +24,7 @@ class TaskFactory extends Factory
             'date_deadline' => $this->faker->date(),
             'time_deadline' => $this->faker->time(),
             'status' => $this->faker->randomElement(['Ожидание', 'В процессе', 'Выполнена', 'Отменена']),
+            'category_id' => $this->faker->numberBetween(1, 4),
         ];
     }
 }
