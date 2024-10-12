@@ -30,6 +30,8 @@ class StoreRequest extends FormRequest
             'time_deadline' => 'nullable|date_format:H:i',
             'status' => 'nullable|string|in:Ожидание,В процессе,Выполнена,Отменена',
             'category_id' => 'nullable|integer|exists:categories,id',
+            'tag_ids' => 'nullable|array',
+            'tag_ids.*' => 'integer|exists:tags,id'
         ];
     }
 
@@ -43,7 +45,8 @@ class StoreRequest extends FormRequest
             'date_deadline.date' => 'Дата должна быть в формате ГГГГ-ММ-ДД.',
             'time_deadline.date_format' => 'Время должно быть в формате ЧЧ:ММ.',
             'status.in' => 'Статус должен быть одним из: ожидание, в процессе, завершен, отменен.',
-            'category_id:exists' => 'Такой категории не существует.'
+            'category_id:exists' => 'Такой категории не существует.',
+            'tag_ids.exists' => 'Таких тегов или такого тега не существут'
         ];
     }
 }

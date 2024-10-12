@@ -36,7 +36,10 @@ class TaskController extends Controller
     public function store(StoreRequest $request)
     {
         $data = $request->validated();
+        $tagID = $data['tag_ids'];
+        unset($data['tag_ids']);
         $task = Task::create($data);
+        $task->tags()->attach($tagID);
 
         return TaskResource::make($task);
     }
@@ -68,7 +71,10 @@ class TaskController extends Controller
     {
         $task = Task::findOrFail($id);
         $data = $request->validated();
+        $tagID = $data['tag_ids'];
+        unset($data['tag_ids']);
         $task->update($data);
+        $task->tags()->sync($tagID);
         $task->fresh();
 
         return TaskResource::make($task);

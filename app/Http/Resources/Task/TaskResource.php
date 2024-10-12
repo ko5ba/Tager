@@ -27,6 +27,14 @@ class TaskResource extends JsonResource
                 'id' => $this->whenNotNull($this->category_id),
                 'title' => $this->whenNotNull($this->category->title),
             ],
+            'tags' => $this->whenNotNull($this->tags, function () {
+                return $this->tags->map(function ($tag) {
+                    return [
+                        'id' => $tag->id,
+                        'title' => $tag->title,
+                    ];
+                });
+            }),
             'created_at' => $this->created_at->format('Y-m-d H:i'),
             'updated_at' => $this->updated_at->format('Y-m-d H:i'),
         ];
